@@ -27,10 +27,10 @@ export default function FounderStory() {
         >
           {/* Real founder photo filling the panel */}
           <Image
-            src="/founder-photo.png"
+            src="/founder-lake.jpg"
             alt="Baneet Chawla, Founder of Kosha Life"
             fill
-            className="object-cover object-top"
+            className="object-cover object-center"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           {/* Subtle dark vignette at the bottom for the name tag readability */}

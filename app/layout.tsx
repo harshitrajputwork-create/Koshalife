@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Kosha Life",
     images: [
       {
-        url: "https://thekoshalife.com/rose-ras-product.png",
+        url: "https://thekoshalife.com/rose-ras-100ml.jpg",
         width: 1200,
         height: 630,
         alt: "Kosha Life — Ayurvedic Luxury Skincare",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kosha Life — The Art of Natural Luxury",
     description: "Bloom with Intent. Ayurvedic skincare for the modern woman.",
-    images: ["https://thekoshalife.com/rose-ras-product.png"],
+    images: ["https://thekoshalife.com/rose-ras-100ml.jpg"],
   },
 };
 

@@ -28,12 +28,12 @@ export default function Nav() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <Image
-            src="/brand-logo.png"
+            src="/brand-logo.jpg"
             alt="Kosha Life"
             width={48}
             height={48}
-            className="rounded-full opacity-90 group-hover:opacity-100 transition-opacity"
-            style={{ width: 48, height: 48 }}
+            className="opacity-90 group-hover:opacity-100 transition-opacity"
+            style={{ width: 48, height: 48, objectFit: "contain" }}
           />
           <span
             className="font-sans text-[9px] tracking-[0.35em] uppercase hidden sm:block"
