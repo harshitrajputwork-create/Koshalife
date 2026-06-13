@@ -26,6 +26,22 @@ export const metadata: Metadata = {
     title: "Kosha Life — The Art of Natural Luxury",
     description: "Bloom with Intent. Ayurvedic skincare for the modern woman.",
     type: "website",
+    url: "https://thekoshalife.com",
+    siteName: "Kosha Life",
+    images: [
+      {
+        url: "https://thekoshalife.com/rose-ras-product.png",
+        width: 1200,
+        height: 630,
+        alt: "Kosha Life — Ayurvedic Luxury Skincare",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kosha Life — The Art of Natural Luxury",
+    description: "Bloom with Intent. Ayurvedic skincare for the modern woman.",
+    images: ["https://thekoshalife.com/rose-ras-product.png"],
   },
 };
 
