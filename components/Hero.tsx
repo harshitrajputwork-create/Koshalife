@@ -192,7 +192,7 @@ export default function Hero() {
                 }}
               />
               <Image
-                src="/rose-ras-100ml.jpg"
+                src="/rose-ras-dark.jpg"
                 alt="Rose Ras — Kosha Life"
                 width={480}
                 height={640}

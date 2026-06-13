@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import BrandStatement from "@/components/BrandStatement";
 import Products from "@/components/Products";
+import PhotoStrip from "@/components/PhotoStrip";
 import Ritual from "@/components/Ritual";
 import Ingredients from "@/components/Ingredients";
 import HowToUse from "@/components/HowToUse";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <BrandStatement />
         <Products />
+        <PhotoStrip />
         <Ritual />
         <Ingredients />
         <HowToUse />
