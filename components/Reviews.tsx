@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const reviews = [
@@ -83,6 +83,20 @@ export default function Reviews() {
   const inView = useInView(headerRef, { once: true, margin: "-80px" });
   const videoRef = useRef<HTMLDivElement>(null);
   const videoInView = useInView(videoRef, { once: true, margin: "-60px" });
+  const testimonialRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const togglePlay = () => {
+    const v = testimonialRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
 
   return (
     <section className="py-24 px-6" style={{ backgroundColor: "#FDFAF4" }}>
@@ -120,20 +134,41 @@ export default function Reviews() {
           style={{ maxWidth: "480px" }}
         >
           <div
-            className="relative"
+            className="relative cursor-pointer"
             style={{ backgroundColor: "#2C1A0E", aspectRatio: "9/16", maxHeight: "480px" }}
+            onClick={togglePlay}
           >
             <video
-              autoPlay
-              muted
-              loop
+              ref={testimonialRef}
               playsInline
               className="w-full h-full object-cover"
               style={{ opacity: 0.95 }}
+              onEnded={() => setPlaying(false)}
             >
               <source src="/testimonial-video.mp4" type="video/mp4" />
             </video>
-            {/* Gold corner accent */}
+
+            {/* Play button overlay — hides when playing */}
+            <motion.div
+              animate={{ opacity: playing ? 0 : 1 }}
+              transition={{ duration: 0.25 }}
+              className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+              style={{ background: "rgba(44,26,14,0.35)" }}
+            >
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: "rgba(196,148,58,0.15)", border: "1px solid rgba(196,148,58,0.7)" }}
+              >
+                <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                  <path d="M2 2L18 11L2 20V2Z" fill="#C4943A" />
+                </svg>
+              </div>
+              <p className="font-sans text-[9px] tracking-[0.25em] uppercase mt-4" style={{ color: "#F2E8D5", opacity: 0.8 }}>
+                Tap to watch
+              </p>
+            </motion.div>
+
+            {/* Gold corner accents */}
             <div
               className="absolute top-4 left-4 w-8 h-8 pointer-events-none"
               style={{ borderTop: "1px solid #C4943A", borderLeft: "1px solid #C4943A", opacity: 0.6 }}
@@ -143,7 +178,7 @@ export default function Reviews() {
               style={{ borderBottom: "1px solid #C4943A", borderRight: "1px solid #C4943A", opacity: 0.6 }}
             />
             <div
-              className="absolute bottom-0 left-0 right-0 px-5 py-4"
+              className="absolute bottom-0 left-0 right-0 px-5 py-4 pointer-events-none"
               style={{ background: "linear-gradient(to top, rgba(44,26,14,0.8) 0%, transparent 100%)" }}
             >
               <p className="font-sans text-[9px] tracking-[0.2em] uppercase" style={{ color: "#C4943A" }}>
