@@ -206,9 +206,9 @@ export default function RiceRasPage() {
             ))}
           </div>
 
-          {/* Ingredient photo */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={ingredientsInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.5 }} className="mt-10 relative overflow-hidden" style={{ height: "400px" }}>
-            <Image src="/rice-ras-ingredients.jpg" alt="Rice Ras Ingredients" fill sizes="(max-width: 1024px) 100vw, 960px" className="object-cover" />
+          {/* Ingredient photo — full uncropped */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={ingredientsInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.5 }} className="mt-10">
+            <Image src="/rice-ras-ingredients.jpg" alt="Rice Ras Ingredients" width={1200} height={900} style={{ width: "100%", height: "auto" }} />
           </motion.div>
         </div>
       </section>
