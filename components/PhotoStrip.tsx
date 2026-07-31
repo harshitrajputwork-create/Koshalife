@@ -5,13 +5,13 @@ import Image from "next/image";
 
 const photos = [
   { src: "/rose-ras-dark.jpg", label: "Rose Ras" },
+  { src: "/rice-ras-main.jpg", label: "Rice Ras" },
   { src: "/founder-lake.jpg", label: "Baneet Chawla" },
   { src: "/rose-ras-100ml.jpg", label: "Rose Ras 100ml" },
+  { src: "/rice-ras-spray.jpg", label: "Rice Ras Toner" },
   { src: "/rose-ras-mini-bottle.jpg", label: "Travel Mini" },
   { src: "/founder-garden.jpg", label: "Founder" },
-  { src: "/rose-ras-dark.jpg", label: "Rose Ras" },
-  { src: "/rose-ras-100ml.jpg", label: "Rose Ras 100ml" },
-  { src: "/founder-lake.jpg", label: "Baneet Chawla" },
+  { src: "/rice-ras-why.jpg", label: "Why Rice Ras" },
 ];
 
 export default function PhotoStrip() {

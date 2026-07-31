@@ -33,6 +33,18 @@ const products = [
     image: "/saffrona-product.png",
     href: "/products/saffrona",
   },
+  {
+    id: "rice-ras",
+    name: "Rice Ras",
+    subtitle: "Traditional Wisdom. Visible Results.",
+    description:
+      "Rice water, licorice extract, rose hydrosol, aloe vera — a brightening toner inspired by age-old Ayurvedic rituals for modern skin.",
+    detail: "100ml · Brightening Rice Toner · All Skin Types",
+    wa: WA_BASE + "Rice%20Ras%20Brightening%20Rice%20Toner",
+    video: "/rose-ras-video.mp4",
+    image: "/rice-ras-main.jpg",
+    href: "/products/rice-ras",
+  },
 ];
 
 function ProductCard({ product, index }: { product: (typeof products)[0]; index: number }) {
