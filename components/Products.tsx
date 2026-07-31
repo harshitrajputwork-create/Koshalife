@@ -41,7 +41,7 @@ const products = [
       "Rice water, licorice extract, rose hydrosol, aloe vera — a brightening toner inspired by age-old Ayurvedic rituals for modern skin.",
     detail: "100ml · Brightening Rice Toner · All Skin Types",
     wa: WA_BASE + "Rice%20Ras%20Brightening%20Rice%20Toner",
-    video: "/rose-ras-video.mp4",
+    video: null,
     image: "/rice-ras-main.jpg",
     href: "/products/rice-ras",
   },
@@ -61,18 +61,27 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
     >
       <div className="relative overflow-hidden" style={{ borderRadius: "2px" }}>
 
-        {/* Video visual — autoplay loop */}
+        {/* Visual — video if available, else static image */}
         <div className="relative overflow-hidden group" style={{ minHeight: "420px" }}>
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          >
-            <source src={product.video} type="video/mp4" />
-            {/* Fallback to image if video fails */}
-          </video>
+          {product.video ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            >
+              <source src={product.video} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
+            />
+          )}
           {/* Moody overlay */}
           <div
             className="absolute inset-0 pointer-events-none"

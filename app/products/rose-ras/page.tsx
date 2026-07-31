@@ -194,7 +194,7 @@ export default function RoseRasPage() {
               className="flex-none snap-start relative overflow-hidden"
               style={{ width: "280px", aspectRatio: "3/4" }}
             >
-              <Image src={src} alt={`Rose Ras ${i + 1}`} fill className="object-cover" />
+              <Image src={src} alt={`Rose Ras ${i + 1}`} fill priority={i === 0} sizes="260px" className="object-cover" />
             </motion.div>
           ))}
         </div>

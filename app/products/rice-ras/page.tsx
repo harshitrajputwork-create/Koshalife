@@ -68,7 +68,7 @@ export default function RiceRasPage() {
       <section className="pt-16 grid lg:grid-cols-2 min-h-screen" style={{ backgroundColor: "#F5EFE4" }}>
         {/* Left: main product photo */}
         <div className="relative overflow-hidden" style={{ minHeight: "70vh" }}>
-          <Image src="/rice-ras-main.jpg" alt="Rice Ras - Brightening Rice Toner" fill className="object-cover" />
+          <Image src="/rice-ras-main.jpg" alt="Rice Ras - Brightening Rice Toner" fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
         </div>
 
         {/* Right: product info */}
@@ -159,7 +159,7 @@ export default function RiceRasPage() {
               className="flex-none snap-start relative overflow-hidden"
               style={{ width: "260px", aspectRatio: "3/4" }}
             >
-              <Image src={src} alt={`Rice Ras ${i + 1}`} fill className="object-cover" />
+              <Image src={src} alt={`Rice Ras ${i + 1}`} fill priority={i === 0} sizes="260px" className="object-cover" />
             </motion.div>
           ))}
         </div>
@@ -208,7 +208,7 @@ export default function RiceRasPage() {
 
           {/* Ingredient photo */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={ingredientsInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.5 }} className="mt-10 relative overflow-hidden" style={{ height: "400px" }}>
-            <Image src="/rice-ras-ingredients.jpg" alt="Rice Ras Ingredients" fill className="object-cover" />
+            <Image src="/rice-ras-ingredients.jpg" alt="Rice Ras Ingredients" fill sizes="(max-width: 1024px) 100vw, 960px" className="object-cover" />
           </motion.div>
         </div>
       </section>
@@ -234,7 +234,7 @@ export default function RiceRasPage() {
           </div>
           {/* How to use photo */}
           <motion.div initial={{ opacity: 0, x: 20 }} animate={stepsInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.65, delay: 0.2 }} className="relative overflow-hidden" style={{ aspectRatio: "3/4", maxHeight: "500px" }}>
-            <Image src="/rice-ras-howto.jpg" alt="How to use Rice Ras" fill className="object-cover" />
+            <Image src="/rice-ras-howto.jpg" alt="How to use Rice Ras" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </motion.div>
         </div>
       </section>
