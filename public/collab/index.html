@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kosha Life – Order</title>
+<meta name="description" content="Order Kosha Life Ayurvedic skincare with an exclusive 10% collab discount.">
+<link rel="icon" href="/brand-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     SETTINGS — the only part you may ever need to change
+     (the settings themselves are in the <script> at the bottom)
+     ========================================================= */
+  :root {
+    --cream: #F2E8D5;
+    --card: #FBF6EC;
+    --brown: #3D2B1F;
+    --brown-soft: #6B5646;
+    --green: #3A5432;
+    --green-dark: #2C4126;
+    --line: #DCCDB2;
+    --error: #A23B2A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--cream);
+    color: var(--brown);
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 20px 16px 48px; }
+  header { text-align: center; padding: 8px 0 18px; }
+  header img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+  h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; margin: 0; }
+  h1 { font-size: 34px; line-height: 1.1; margin-top: 10px; }
+  .tag {
+    display: inline-block; margin-top: 10px; padding: 5px 12px; border-radius: 999px;
+    background: var(--green); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: .02em;
+  }
+  .sub { color: var(--brown-soft); margin: 10px 0 0; font-size: 15px; }
+
+  .products { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 28px; }
+  .p { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .p img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #eadfca; }
+  .p .info { padding: 10px 12px 12px; }
+  .p .name { font-weight: 600; font-size: 14px; line-height: 1.3; }
+  .p .price { margin-top: 4px; font-size: 14px; }
+  .p .price s { color: var(--brown-soft); margin-right: 6px; }
+  .p .price b { color: var(--green); }
+
+  form { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px; }
+  h2 { font-size: 26px; margin-bottom: 14px; }
+  label { display: block; font-weight: 500; font-size: 14px; margin: 14px 0 6px; }
+  label .opt { color: var(--brown-soft); font-weight: 400; }
+  input, select {
+    width: 100%; font: inherit; color: var(--brown); background: #fff;
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-height: 48px;
+    appearance: none; -webkit-appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%233D2B1F' stroke-width='1.6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
+  }
+  input:focus, select:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: var(--green); }
+  .phone { display: flex; gap: 8px; }
+  .phone span {
+    display: flex; align-items: center; padding: 0 12px; border: 1px solid var(--line);
+    border-radius: 10px; background: #f4ecdd; font-weight: 500;
+  }
+  .row { display: grid; grid-template-columns: 1fr 100px; gap: 8px; }
+  .err { color: var(--error); font-size: 13px; margin-top: 6px; display: none; }
+  .invalid .err { display: block; }
+  .invalid input, .invalid select { border-color: var(--error); }
+
+  .coupon {
+    margin-top: 18px; padding: 12px; border: 1px dashed var(--green); border-radius: 10px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 14px;
+  }
+  .coupon b { letter-spacing: .06em; }
+  .coupon .ok { color: var(--green); font-weight: 600; white-space: nowrap; }
+
+  .summary { margin-top: 16px; font-size: 15px; }
+  .summary div { display: flex; justify-content: space-between; padding: 4px 0; }
+  .summary .disc { color: var(--green); }
+  .summary .total { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 10px; font-weight: 600; font-size: 18px; }
+
+  button {
+    width: 100%; margin-top: 20px; min-height: 52px; border: 0; border-radius: 12px;
+    background: var(--green); color: #fff; font: inherit; font-weight: 600; font-size: 17px; cursor: pointer;
+  }
+  button:hover { background: var(--green-dark); }
+  button:disabled { opacity: .6; cursor: default; }
+  .note { text-align: center; font-size: 13px; color: var(--brown-soft); margin-top: 10px; }
+
+  .done { display: none; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 16px; }
+  .done h2 { margin-bottom: 8px; }
+  .done .oid { font-weight: 600; letter-spacing: .04em; }
+  .done a.btn {
+    display: block; margin-top: 18px; padding: 14px; border-radius: 12px; background: var(--green);
+    color: #fff; text-decoration: none; font-weight: 600;
+  }
+  footer { text-align: center; font-size: 13px; color: var(--brown-soft); margin-top: 28px; }
+  footer a { color: var(--brown); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="/brand-logo.jpg" alt="Kosha Life logo">
+    <h1>Kosha Life</h1>
+    <div class="tag" id="tag">Exclusive collab offer · 10% off</div>
+    <p class="sub">Ayurvedic skincare, made slowly. Pick your products below and place your order on WhatsApp.</p>
+  </header>
+
+  <section class="products" id="products" aria-label="Products"></section>
+
+  <form id="form" novalidate>
+    <h2>Your order</h2>
+
+    <div class="field" id="f-name">
+      <label for="name">Name</label>
+      <input id="name" name="name" autocomplete="name" placeholder="Your full name" maxlength="60">
+      <div class="err">Please enter your name.</div>
+    </div>
+
+    <div class="field" id="f-phone">
+      <label for="phone">Contact number</label>
+      <div class="phone">
+        <span>+91</span>
+        <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" maxlength="10">
+      </div>
+      <div class="err">Please enter a valid 10-digit mobile number.</div>
+    </div>
+
+    <div id="slots"></div>
+
+    <div class="coupon">
+      <span>Coupon <b id="code"></b></span>
+      <span class="ok">✓ 10% off applied</span>
+    </div>
+
+    <div class="summary" id="summary" hidden>
+      <div><span>Subtotal</span><span id="s-sub"></span></div>
+      <div class="disc"><span>Collab discount (10%)</span><span id="s-disc"></span></div>
+      <div class="total"><span>Total</span><span id="s-total"></span></div>
+    </div>
+
+    <button type="submit" id="submit">Place order on WhatsApp</button>
+    <p class="note">You'll be taken to WhatsApp to confirm your order and pay.</p>
+  </form>
+
+  <div class="done" id="done" role="status">
+    <h2>Thank you!</h2>
+    <p>Your order ID is <span class="oid" id="oid"></span>.<br>WhatsApp should open now. Send the message there to confirm your order.</p>
+    <a class="btn" id="wa-link" href="#">Open WhatsApp</a>
+  </div>
+
+  <footer>
+    <a href="https://thekoshalife.com" target="_blank" rel="noopener">thekoshalife.com</a>
+  </footer>
+</div>
+
+<script>
+/* =========================================================
+   SETTINGS — change these if anything changes
+   ========================================================= */
+const SETTINGS = {
+  whatsappNumber: "919461911119",   // her WhatsApp number, with 91 in front, no + or spaces
+  couponCode: "KK102026",
+  discountPercent: 10,
+  // Paste the Google Sheet "Web app URL" here (see SETUP.md). Leave "" to skip saving to the sheet.
+  sheetUrl: "",
+  // Used when the QR link has no ?src=... at the end
+  defaultSource: "FnB collab QR"
+};
+
+const PRODUCTS = [
+  { id: "saffrona", name: "Saffrona Under-Eye Elixir", mrp: 751, img: "/saffrona-product.png" },
+  { id: "rose-ras", name: "Rose Ras",                  mrp: 399, img: "/rose-ras-100ml.jpg" },
+  { id: "rice-ras", name: "Rice Ras",                  mrp: 449, img: "/rice-ras-main.jpg" },
+  { id: "hair-mask", name: "Hair Mask",                mrp: 120, img: "/collab/hair-mask.jpg" }
+];
+const SLOTS = 4;      // number of product dropdowns (first one is required)
+const MAX_QTY = 5;
+
+/* ========================================================= */
+
+const $ = (id) => document.getElementById(id);
+const rupees = (n) => "₹" + n.toLocaleString("en-IN");
+const offer = (mrp) => Math.round(mrp * (100 - SETTINGS.discountPercent) / 100);
+const params = new URLSearchParams(location.search);
+const source = (params.get("src") || SETTINGS.defaultSource).slice(0, 60);
+
+$("code").textContent = SETTINGS.couponCode;
+
+// Product cards
+$("products").innerHTML = PRODUCTS.map(p => `
+  <article class="p">
+    <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='/brand-logo.jpg'">
+    <div class="info">
+      <div class="name">${p.name}</div>
+      <div class="price"><s>${rupees(p.mrp)}</s><b>${rupees(offer(p.mrp))}</b></div>
+    </div>
+  </article>`).join("");
+
+// Product dropdowns
+const qtyOptions = Array.from({ length: MAX_QTY }, (_, i) => `<option value="${i + 1}">Qty ${i + 1}</option>`).join("");
+$("slots").innerHTML = Array.from({ length: SLOTS }, (_, i) => `
+  <div class="field" id="f-slot${i}">
+    <label for="slot${i}">Product ${i + 1} ${i === 0 ? "" : '<span class="opt">(optional)</span>'}</label>
+    <div class="row">
+      <select id="slot${i}" data-slot="${i}">
+        <option value="">${i === 0 ? "Select a product" : "Add another product"}</option>
+        ${PRODUCTS.map(p => `<option value="${p.id}">${p.name} – ${rupees(p.mrp)}</option>`).join("")}
+      </select>
+      <select id="qty${i}" aria-label="Quantity for product ${i + 1}">${qtyOptions}</select>
+    </div>
+    ${i === 0 ? '<div class="err">Please choose at least one product.</div>' : ""}
+  </div>`).join("");
+
+function chosenItems() {
+  const items = [];
+  for (let i = 0; i < SLOTS; i++) {
+    const id = $("slot" + i).value;
+    if (!id) continue;
+    const p = PRODUCTS.find(x => x.id === id);
+    items.push({ ...p, qty: Number($("qty" + i).value) });
+  }
+  return items;
+}
+
+function totals(items) {
+  const sub = items.reduce((s, it) => s + it.mrp * it.qty, 0);
+  const total = items.reduce((s, it) => s + offer(it.mrp) * it.qty, 0);
+  return { sub, disc: sub - total, total };
+}
+
+function refresh() {
+  // Don't let the same product be picked in two dropdowns
+  const picked = Array.from({ length: SLOTS }, (_, i) => $("slot" + i).value);
+  for (let i = 0; i < SLOTS; i++) {
+    for (const opt of $("slot" + i).options) {
+      if (opt.value) opt.disabled = picked.some((v, j) => j !== i && v === opt.value);
+    }
+  }
+  const items = chosenItems();
+  const t = totals(items);
+  $("summary").hidden = items.length === 0;
+  $("s-sub").textContent = rupees(t.sub);
+  $("s-disc").textContent = "−" + rupees(t.disc);
+  $("s-total").textContent = rupees(t.total);
+  if (items.length) $("f-slot0").classList.remove("invalid");
+}
+document.querySelectorAll("#slots select").forEach(s => s.addEventListener("change", refresh));
+$("phone").addEventListener("input", e => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
+$("name").addEventListener("input", () => $("f-name").classList.remove("invalid"));
+$("phone").addEventListener("input", () => $("f-phone").classList.remove("invalid"));
+
+// Send data to the Google Sheet (silently; never blocks the order)
+function sendToSheet(data) {
+  if (!SETTINGS.sheetUrl) return Promise.resolve();
+  const body = new URLSearchParams(data);
+  return fetch(SETTINGS.sheetUrl, { method: "POST", mode: "no-cors", body, keepalive: true }).catch(() => {});
+}
+
+// Count QR scans (once per visit)
+try {
+  if (!sessionStorage.getItem("kk_seen")) {
+    sessionStorage.setItem("kk_seen", "1");
+    sendToSheet({ type: "scan", source, device: /Android|iPhone|iPad/i.test(navigator.userAgent) ? "Mobile" : "Desktop" });
+  }
+} catch (e) { /* storage blocked — skip scan count */ }
+
+$("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = $("name").value.trim();
+  const phone = $("phone").value.trim();
+  const items = chosenItems();
+
+  let ok = true;
+  $("f-name").classList.toggle("invalid", !name);
+  $("f-phone").classList.toggle("invalid", !/^[6-9]\d{9}$/.test(phone));
+  $("f-slot0").classList.toggle("invalid", items.length === 0);
+  if (!name || !/^[6-9]\d{9}$/.test(phone) || items.length === 0) {
+    const firstBad = document.querySelector(".invalid input, .invalid select");
+    if (firstBad) firstBad.focus();
+    return;
+  }
+
+  const t = totals(items);
+  const orderId = "KK-" + Date.now().toString(36).slice(-5).toUpperCase();
+  const itemText = items.map(it => `${it.name} x ${it.qty}`).join(", ");
+
+  const msg = [
+    "Hi Kosha Life! I'd like to place an order.",
+    "",
+    `Order ID: ${orderId}`,
+    `Name: ${name}`,
+    `Contact: +91 ${phone}`,
+    "",
+    ...items.map((it, i) => `${i + 1}. ${it.name} x ${it.qty} = ${rupees(it.mrp * it.qty)}`),
+    "",
+    `Subtotal: ${rupees(t.sub)}`,
+    `Coupon ${SETTINGS.couponCode} (${SETTINGS.discountPercent}% off): -${rupees(t.disc)}`,
+    `Total to pay: ${rupees(t.total)}`,
+    "",
+    `(Came via: ${source})`
+  ].join("\n");
+  const waUrl = `https://wa.me/${SETTINGS.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+  $("submit").disabled = true;
+  $("submit").textContent = "Placing order…";
+
+  // Save to sheet, but don't wait more than 2 seconds
+  await Promise.race([
+    sendToSheet({
+      type: "order", orderId, name, phone, items: itemText,
+      itemIds: items.map(it => `${it.id}:${it.qty}`).join(","),
+      coupon: SETTINGS.couponCode, source
+    }),
+    new Promise(r => setTimeout(r, 2000))
+  ]);
+
+  $("oid").textContent = orderId;
+  $("wa-link").href = waUrl;
+  $("form").style.display = "none";
+  document.querySelector(".products").style.display = "none";
+  $("done").style.display = "block";
+  window.scrollTo(0, 0);
+  location.href = waUrl;
+});
+
+refresh();
+</script>
+</body>
+</html>
