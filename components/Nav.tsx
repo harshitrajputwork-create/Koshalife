@@ -3,6 +3,15 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+// Running campaign: shown as a strip at the very top of every page with this nav.
+// Set CAMPAIGN to null to hide it.
+const CAMPAIGN: { label: string; text: string; cta: string; href: string } | null = {
+  label: "Limited offer",
+  text: "Flat 10% off all products",
+  cta: "Order now",
+  href: "/collab?src=website",
+};
+
 const WHATSAPP_URL =
   "https://wa.me/919461911119?text=Hi%20Kosha%20Life!%20I%27d%20like%20to%20know%20more%20about%20your%20products.";
 
@@ -19,12 +28,27 @@ export default function Nav() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#2C1A0E]/95 backdrop-blur-sm py-3"
-          : "bg-transparent py-5"
+        scrolled ? "bg-[#2C1A0E]/95 backdrop-blur-sm" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      {CAMPAIGN && (
+        <a
+          href={CAMPAIGN.href}
+          className="block w-full text-center font-sans text-[10.5px] sm:text-xs tracking-[0.1em] sm:tracking-[0.12em] uppercase px-4 py-2 transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "#3A5432", color: "#F2E8D5" }}
+        >
+          <span className="hidden sm:inline">{CAMPAIGN.label} · </span>
+          {CAMPAIGN.text}
+          <span className="ml-2 whitespace-nowrap underline underline-offset-4" style={{ color: "#E8C27A" }}>
+            {CAMPAIGN.cta} →
+          </span>
+        </a>
+      )}
+      <div
+        className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
+      >
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <Image
@@ -121,11 +145,20 @@ export default function Nav() {
               {link}
             </a>
           ))}
+          {CAMPAIGN && (
+            <a
+              href={CAMPAIGN.href}
+              className="font-sans text-xs tracking-[0.15em] uppercase mt-2"
+              style={{ color: "#E8C27A" }}
+            >
+              {CAMPAIGN.cta} · 10% off →
+            </a>
+          )}
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-xs tracking-[0.15em] uppercase mt-2"
+            className="font-sans text-xs tracking-[0.15em] uppercase"
             style={{ color: "#C4943A" }}
           >
             Shop via WhatsApp →
