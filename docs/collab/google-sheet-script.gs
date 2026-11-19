@@ -27,7 +27,7 @@ function doPost(e) {
     const lines = [];
     String(p.itemIds || "").split(",").forEach(function (pair) {
       const bits = pair.split(":");
-      const id = bits[0], qty = Math.min(Math.max(parseInt(bits[1], 10) || 0, 0), 20);
+      const id = bits[0], qty = Math.min(Math.max(parseInt(bits[1], 10) || 0, 0), 999);
       if (!PRICES[id] || !qty) return;
       sub += PRICES[id] * qty;
       total += Math.round(PRICES[id] * (100 - DISCOUNT_PERCENT) / 100) * qty;

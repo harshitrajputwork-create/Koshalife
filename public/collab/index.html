@@ -2,18 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kosha Life – Order</title>
 <meta name="description" content="Order Kosha Life Ayurvedic skincare with an exclusive 10% collab discount.">
 <link rel="icon" href="/brand-logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* =========================================================
-     SETTINGS — the only part you may ever need to change
-     (the settings themselves are in the <script> at the bottom)
-     ========================================================= */
   :root {
     --cream: #F2E8D5;
     --card: #FBF6EC;
@@ -21,149 +17,209 @@
     --brown-soft: #6B5646;
     --green: #3A5432;
     --green-dark: #2C4126;
+    --green-tint: #E3EADB;
     --line: #DCCDB2;
     --error: #A23B2A;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    background: var(--cream);
-    color: var(--brown);
-    font-family: "DM Sans", system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
+    background: var(--cream); color: var(--brown);
+    font-family: "DM Sans", system-ui, sans-serif; font-size: 16px; line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 520px; margin: 0 auto; padding: 20px 16px 48px; }
-  header { text-align: center; padding: 8px 0 18px; }
-  header img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
   h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; margin: 0; }
-  h1 { font-size: 34px; line-height: 1.1; margin-top: 10px; }
-  .tag {
-    display: inline-block; margin-top: 10px; padding: 5px 12px; border-radius: 999px;
-    background: var(--green); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: .02em;
+  button { font: inherit; cursor: pointer; }
+
+  /* ---------- Layout ---------- */
+  .page { max-width: 1120px; margin: 0 auto; padding: 16px 16px 120px; }
+  .layout { display: grid; gap: 24px; }
+  @media (min-width: 900px) {
+    .page { padding: 28px 24px 48px; }
+    .layout { grid-template-columns: minmax(0, 1fr) 380px; align-items: start; gap: 32px; }
+    .cart { position: sticky; top: 20px; }
+    .bar { display: none !important; }
   }
-  .sub { color: var(--brown-soft); margin: 10px 0 0; font-size: 15px; }
 
-  .products { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 28px; }
-  .p { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  /* ---------- Header ---------- */
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  header img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+  header h1 { font-size: 28px; line-height: 1.1; }
+  header .tag { font-size: 13px; color: var(--green); font-weight: 600; }
+  .banner {
+    background: var(--green); color: #fff; border-radius: 14px; padding: 14px 16px; margin-bottom: 18px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .banner b { font-size: 18px; }
+  .banner span { font-size: 14px; opacity: .9; }
+  .banner code { background: rgba(255,255,255,.18); padding: 2px 8px; border-radius: 6px; font-family: inherit; font-weight: 600; letter-spacing: .05em; }
+
+  /* ---------- Products ---------- */
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (min-width: 640px) { .grid { gap: 16px; } }
+  .p {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    display: flex; flex-direction: column; transition: border-color .15s, box-shadow .15s;
+  }
+  .p.in { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+  .p .img { position: relative; cursor: pointer; }
   .p img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #eadfca; }
-  .p .info { padding: 10px 12px 12px; }
-  .p .name { font-weight: 600; font-size: 14px; line-height: 1.3; }
-  .p .price { margin-top: 4px; font-size: 14px; }
-  .p .price s { color: var(--brown-soft); margin-right: 6px; }
-  .p .price b { color: var(--green); }
+  .p .off {
+    position: absolute; top: 8px; left: 8px; background: var(--green); color: #fff;
+    font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
+  }
+  .p .info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .p .name { font-weight: 600; font-size: 15px; line-height: 1.3; }
+  .p .price { font-size: 14px; margin-top: -4px; }
+  .p .price b { font-size: 17px; color: var(--brown); margin-right: 6px; }
+  .p .price s { color: var(--brown-soft); }
+  .p .act { margin-top: auto; }
 
-  form { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px; }
-  h2 { font-size: 26px; margin-bottom: 14px; }
-  label { display: block; font-weight: 500; font-size: 14px; margin: 14px 0 6px; }
-  label .opt { color: var(--brown-soft); font-weight: 400; }
-  input, select {
+  .add {
+    width: 100%; min-height: 44px; border-radius: 10px; border: 1.5px solid var(--green);
+    background: #fff; color: var(--green); font-weight: 700; font-size: 15px; letter-spacing: .02em;
+  }
+  .add:hover { background: var(--green-tint); }
+  .step {
+    display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; min-height: 44px;
+    border-radius: 10px; background: var(--green); color: #fff; overflow: hidden;
+  }
+  .step button {
+    height: 44px; border: 0; background: transparent; color: #fff; font-size: 22px; font-weight: 500; line-height: 1;
+  }
+  .step button:hover { background: var(--green-dark); }
+  .step span { text-align: center; font-weight: 700; font-size: 16px; }
+  .step.sm { grid-template-columns: 34px 34px 34px; min-height: 34px; border-radius: 8px; }
+  .step.sm button { height: 34px; font-size: 18px; }
+  .step.sm span { font-size: 15px; }
+
+  /* ---------- Cart / checkout ---------- */
+  .cart { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 16px; scroll-margin-top: 12px; }
+  .cart h2 { font-size: 26px; margin-bottom: 6px; }
+  .empty { color: var(--brown-soft); font-size: 15px; padding: 10px 0 4px; }
+  .items { list-style: none; margin: 0; padding: 0; }
+  .items li { display: grid; grid-template-columns: 48px 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .items img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
+  .items .n { font-weight: 600; font-size: 14px; line-height: 1.3; }
+  .items .pr { font-size: 13px; color: var(--brown-soft); }
+  .items .r { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .items .lt { font-weight: 600; font-size: 14px; }
+
+  .sum { margin-top: 12px; font-size: 15px; }
+  .sum div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .sum .disc { color: var(--green); }
+  .sum .tot { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 10px; font-weight: 700; font-size: 19px; }
+  .save { margin-top: 8px; background: var(--green-tint); color: var(--green-dark); font-size: 14px; font-weight: 600; text-align: center; padding: 8px; border-radius: 8px; }
+
+  .details { margin-top: 18px; }
+  .details h3 { font-size: 15px; margin: 0 0 4px; }
+  label { display: block; font-weight: 500; font-size: 14px; margin: 12px 0 6px; }
+  input {
     width: 100%; font: inherit; color: var(--brown); background: #fff;
     border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-height: 48px;
-    appearance: none; -webkit-appearance: none;
   }
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%233D2B1F' stroke-width='1.6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
-  }
-  input:focus, select:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: var(--green); }
+  input:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: var(--green); }
   .phone { display: flex; gap: 8px; }
-  .phone span {
-    display: flex; align-items: center; padding: 0 12px; border: 1px solid var(--line);
-    border-radius: 10px; background: #f4ecdd; font-weight: 500;
-  }
-  .row { display: grid; grid-template-columns: 1fr 100px; gap: 8px; }
+  .phone span { display: flex; align-items: center; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: #f4ecdd; font-weight: 500; }
   .err { color: var(--error); font-size: 13px; margin-top: 6px; display: none; }
   .invalid .err { display: block; }
-  .invalid input, .invalid select { border-color: var(--error); }
+  .invalid input { border-color: var(--error); }
 
-  .coupon {
-    margin-top: 18px; padding: 12px; border: 1px dashed var(--green); border-radius: 10px;
-    display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 14px;
+  .go {
+    width: 100%; margin-top: 18px; min-height: 54px; border: 0; border-radius: 12px;
+    background: var(--green); color: #fff; font-weight: 700; font-size: 17px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .coupon b { letter-spacing: .06em; }
-  .coupon .ok { color: var(--green); font-weight: 600; white-space: nowrap; }
+  .go:hover { background: var(--green-dark); }
+  .go:disabled { opacity: .55; cursor: default; }
+  .note { text-align: center; font-size: 13px; color: var(--brown-soft); margin: 10px 0 0; }
 
-  .summary { margin-top: 16px; font-size: 15px; }
-  .summary div { display: flex; justify-content: space-between; padding: 4px 0; }
-  .summary .disc { color: var(--green); }
-  .summary .total { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 10px; font-weight: 600; font-size: 18px; }
-
-  button {
-    width: 100%; margin-top: 20px; min-height: 52px; border: 0; border-radius: 12px;
-    background: var(--green); color: #fff; font: inherit; font-weight: 600; font-size: 17px; cursor: pointer;
+  /* ---------- Mobile bottom bar ---------- */
+  .bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--brown); color: #fff; display: none; align-items: center; justify-content: space-between; gap: 12px;
+    box-shadow: 0 -6px 20px rgba(61,43,31,.18);
   }
-  button:hover { background: var(--green-dark); }
-  button:disabled { opacity: .6; cursor: default; }
-  .note { text-align: center; font-size: 13px; color: var(--brown-soft); margin-top: 10px; }
+  .bar.show { display: flex; }
+  .bar .t { line-height: 1.25; }
+  .bar .t small { display: block; font-size: 12px; opacity: .8; }
+  .bar .t b { font-size: 18px; }
+  .bar button { border: 0; border-radius: 10px; background: #fff; color: var(--brown); font-weight: 700; padding: 12px 18px; min-height: 46px; }
 
-  .done { display: none; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 16px; }
-  .done h2 { margin-bottom: 8px; }
-  .done .oid { font-weight: 600; letter-spacing: .04em; }
-  .done a.btn {
-    display: block; margin-top: 18px; padding: 14px; border-radius: 12px; background: var(--green);
-    color: #fff; text-decoration: none; font-weight: 600;
-  }
+  /* ---------- Done ---------- */
+  .done { display: none; max-width: 480px; margin: 40px auto; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 16px; }
+  .done h2 { font-size: 30px; margin-bottom: 8px; }
+  .done .oid { font-weight: 700; letter-spacing: .04em; }
+  .done a { display: block; margin-top: 18px; padding: 14px; border-radius: 12px; background: var(--green); color: #fff; text-decoration: none; font-weight: 700; }
   footer { text-align: center; font-size: 13px; color: var(--brown-soft); margin-top: 28px; }
   footer a { color: var(--brown); }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <img src="/brand-logo.jpg" alt="Kosha Life logo">
-    <h1>Kosha Life</h1>
-    <div class="tag" id="tag">Exclusive collab offer · 10% off</div>
-    <p class="sub">Ayurvedic skincare, made slowly. Pick your products below and place your order on WhatsApp.</p>
-  </header>
-
-  <section class="products" id="products" aria-label="Products"></section>
-
-  <form id="form" novalidate>
-    <h2>Your order</h2>
-
-    <div class="field" id="f-name">
-      <label for="name">Name</label>
-      <input id="name" name="name" autocomplete="name" placeholder="Your full name" maxlength="60">
-      <div class="err">Please enter your name.</div>
-    </div>
-
-    <div class="field" id="f-phone">
-      <label for="phone">Contact number</label>
-      <div class="phone">
-        <span>+91</span>
-        <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" maxlength="10">
+<div class="page">
+  <div id="shop">
+    <header>
+      <img src="/brand-logo.jpg" alt="Kosha Life logo">
+      <div>
+        <h1>Kosha Life</h1>
+        <div class="tag">Ayurvedic skincare · Exclusive collab offer</div>
       </div>
-      <div class="err">Please enter a valid 10-digit mobile number.</div>
+    </header>
+
+    <div class="banner">
+      <b>Flat 10% off everything</b>
+      <span>Code <code id="code"></code> auto-applied</span>
     </div>
 
-    <div id="slots"></div>
+    <div class="layout">
+      <section class="grid" id="grid" aria-label="Products"></section>
 
-    <div class="coupon">
-      <span>Coupon <b id="code"></b></span>
-      <span class="ok">✓ 10% off applied</span>
+      <aside class="cart" id="cart" aria-label="Your order">
+        <h2>Your order</h2>
+        <div class="empty" id="empty">Your cart is empty. Tap <b>ADD</b> on a product to start.</div>
+        <ul class="items" id="items"></ul>
+        <div class="sum" id="sum" hidden>
+          <div><span>Price (<span id="count"></span>)</span><span id="s-sub"></span></div>
+          <div class="disc"><span>Discount (10%)</span><span id="s-disc"></span></div>
+          <div class="tot"><span>Total</span><span id="s-total"></span></div>
+          <div class="save" id="s-save"></div>
+        </div>
+
+        <form class="details" id="form" novalidate>
+          <h3>Your details</h3>
+          <div id="f-name">
+            <label for="name">Name</label>
+            <input id="name" autocomplete="name" placeholder="Your full name" maxlength="60">
+            <div class="err">Please enter your name.</div>
+          </div>
+          <div id="f-phone">
+            <label for="phone">Contact number</label>
+            <div class="phone">
+              <span>+91</span>
+              <input id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" maxlength="10">
+            </div>
+            <div class="err">Please enter a valid 10-digit mobile number.</div>
+          </div>
+          <button type="submit" class="go" id="submit">Place order on WhatsApp</button>
+          <p class="note">You'll confirm and pay on WhatsApp.</p>
+        </form>
+      </aside>
     </div>
 
-    <div class="summary" id="summary" hidden>
-      <div><span>Subtotal</span><span id="s-sub"></span></div>
-      <div class="disc"><span>Collab discount (10%)</span><span id="s-disc"></span></div>
-      <div class="total"><span>Total</span><span id="s-total"></span></div>
-    </div>
-
-    <button type="submit" id="submit">Place order on WhatsApp</button>
-    <p class="note">You'll be taken to WhatsApp to confirm your order and pay.</p>
-  </form>
+    <footer><a href="https://thekoshalife.com" target="_blank" rel="noopener">thekoshalife.com</a></footer>
+  </div>
 
   <div class="done" id="done" role="status">
     <h2>Thank you!</h2>
     <p>Your order ID is <span class="oid" id="oid"></span>.<br>WhatsApp should open now. Send the message there to confirm your order.</p>
-    <a class="btn" id="wa-link" href="#">Open WhatsApp</a>
+    <a id="wa-link" href="#">Open WhatsApp</a>
   </div>
+</div>
 
-  <footer>
-    <a href="https://thekoshalife.com" target="_blank" rel="noopener">thekoshalife.com</a>
-  </footer>
+<div class="bar" id="bar">
+  <div class="t"><small id="b-count"></small><b id="b-total"></b></div>
+  <button type="button" id="b-go">Checkout →</button>
 </div>
 
 <script>
@@ -174,99 +230,112 @@ const SETTINGS = {
   whatsappNumber: "919461911119",   // her WhatsApp number, with 91 in front, no + or spaces
   couponCode: "KK102026",
   discountPercent: 10,
-  // Paste the Google Sheet "Web app URL" here (see SETUP.md). Leave "" to skip saving to the sheet.
+  // Paste the Google Sheet "Web app URL" here (see docs/collab/SETUP.md). Leave "" to skip saving to the sheet.
   sheetUrl: "",
   // Used when the QR link has no ?src=... at the end
   defaultSource: "FnB collab QR"
 };
 
 const PRODUCTS = [
-  { id: "saffrona", name: "Saffrona Under-Eye Elixir", mrp: 751, img: "/saffrona-product.png" },
-  { id: "rose-ras", name: "Rose Ras",                  mrp: 399, img: "/rose-ras-100ml.jpg" },
-  { id: "rice-ras", name: "Rice Ras",                  mrp: 449, img: "/rice-ras-main.jpg" },
-  { id: "hair-mask", name: "Hair Mask",                mrp: 120, img: "/collab/hair-mask.jpg" }
+  { id: "saffrona",  name: "Saffrona Under-Eye Elixir", mrp: 751, img: "/saffrona-product.png" },
+  { id: "rose-ras",  name: "Rose Ras",                  mrp: 399, img: "/rose-ras-100ml.jpg" },
+  { id: "rice-ras",  name: "Rice Ras",                  mrp: 449, img: "/rice-ras-main.jpg" },
+  { id: "hair-mask", name: "Hair Mask",                 mrp: 120, img: "/brand-logo.jpg" } // swap to "/collab/hair-mask.jpg" once that photo is added
 ];
-const SLOTS = 4;      // number of product dropdowns (first one is required)
-const MAX_QTY = 5;
-
 /* ========================================================= */
 
 const $ = (id) => document.getElementById(id);
 const rupees = (n) => "₹" + n.toLocaleString("en-IN");
 const offer = (mrp) => Math.round(mrp * (100 - SETTINGS.discountPercent) / 100);
-const params = new URLSearchParams(location.search);
-const source = (params.get("src") || SETTINGS.defaultSource).slice(0, 60);
+const source = (new URLSearchParams(location.search).get("src") || SETTINGS.defaultSource).slice(0, 60);
+const FALLBACK_IMG = "/brand-logo.jpg";
+const cart = {}; // id -> qty
 
 $("code").textContent = SETTINGS.couponCode;
 
-// Product cards
-$("products").innerHTML = PRODUCTS.map(p => `
-  <article class="p">
-    <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='/brand-logo.jpg'">
-    <div class="info">
-      <div class="name">${p.name}</div>
-      <div class="price"><s>${rupees(p.mrp)}</s><b>${rupees(offer(p.mrp))}</b></div>
-    </div>
-  </article>`).join("");
-
-// Product dropdowns
-const qtyOptions = Array.from({ length: MAX_QTY }, (_, i) => `<option value="${i + 1}">Qty ${i + 1}</option>`).join("");
-$("slots").innerHTML = Array.from({ length: SLOTS }, (_, i) => `
-  <div class="field" id="f-slot${i}">
-    <label for="slot${i}">Product ${i + 1} ${i === 0 ? "" : '<span class="opt">(optional)</span>'}</label>
-    <div class="row">
-      <select id="slot${i}" data-slot="${i}">
-        <option value="">${i === 0 ? "Select a product" : "Add another product"}</option>
-        ${PRODUCTS.map(p => `<option value="${p.id}">${p.name} – ${rupees(p.mrp)}</option>`).join("")}
-      </select>
-      <select id="qty${i}" aria-label="Quantity for product ${i + 1}">${qtyOptions}</select>
-    </div>
-    ${i === 0 ? '<div class="err">Please choose at least one product.</div>' : ""}
-  </div>`).join("");
-
-function chosenItems() {
-  const items = [];
-  for (let i = 0; i < SLOTS; i++) {
-    const id = $("slot" + i).value;
-    if (!id) continue;
-    const p = PRODUCTS.find(x => x.id === id);
-    items.push({ ...p, qty: Number($("qty" + i).value) });
-  }
-  return items;
+function stepper(id, qty, small) {
+  return `<div class="step${small ? " sm" : ""}">
+    <button type="button" data-dec="${id}" aria-label="Remove one">−</button>
+    <span aria-live="polite">${qty}</span>
+    <button type="button" data-inc="${id}" aria-label="Add one">+</button>
+  </div>`;
 }
 
+function renderGrid() {
+  $("grid").innerHTML = PRODUCTS.map(p => {
+    const q = cart[p.id] || 0;
+    return `<article class="p${q ? " in" : ""}">
+      <div class="img" data-inc="${p.id}" title="Add ${p.name}">
+        <img src="${p.img}" alt="${p.name}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+        <span class="off">10% OFF</span>
+      </div>
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price"><b>${rupees(offer(p.mrp))}</b><s>${rupees(p.mrp)}</s></div>
+        <div class="act">${q ? stepper(p.id, q) : `<button type="button" class="add" data-inc="${p.id}">ADD +</button>`}</div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function lines() {
+  return PRODUCTS.filter(p => cart[p.id] > 0).map(p => ({ ...p, qty: cart[p.id] }));
+}
 function totals(items) {
+  const count = items.reduce((s, it) => s + it.qty, 0);
   const sub = items.reduce((s, it) => s + it.mrp * it.qty, 0);
   const total = items.reduce((s, it) => s + offer(it.mrp) * it.qty, 0);
-  return { sub, disc: sub - total, total };
+  return { count, sub, disc: sub - total, total };
 }
 
-function refresh() {
-  // Don't let the same product be picked in two dropdowns
-  const picked = Array.from({ length: SLOTS }, (_, i) => $("slot" + i).value);
-  for (let i = 0; i < SLOTS; i++) {
-    for (const opt of $("slot" + i).options) {
-      if (opt.value) opt.disabled = picked.some((v, j) => j !== i && v === opt.value);
-    }
-  }
-  const items = chosenItems();
+function renderCart() {
+  const items = lines();
   const t = totals(items);
-  $("summary").hidden = items.length === 0;
+  $("empty").hidden = items.length > 0;
+  if (items.length) $("empty").innerHTML = "Your cart is empty. Tap <b>ADD</b> on a product to start.";
+  $("sum").hidden = items.length === 0;
+  $("items").innerHTML = items.map(it => `<li>
+      <img src="${it.img}" alt="" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+      <div><div class="n">${it.name}</div><div class="pr">${rupees(offer(it.mrp))} each</div></div>
+      <div class="r"><span class="lt">${rupees(offer(it.mrp) * it.qty)}</span>${stepper(it.id, it.qty, true)}</div>
+    </li>`).join("");
+  const itemsWord = t.count === 1 ? "1 item" : `${t.count} items`;
+  $("count").textContent = itemsWord;
   $("s-sub").textContent = rupees(t.sub);
   $("s-disc").textContent = "−" + rupees(t.disc);
   $("s-total").textContent = rupees(t.total);
-  if (items.length) $("f-slot0").classList.remove("invalid");
+  $("s-save").textContent = `You save ${rupees(t.disc)} on this order`;
+  $("bar").classList.toggle("show", t.count > 0 && !cartInView);
+  $("b-count").textContent = itemsWord;
+  $("b-total").textContent = rupees(t.total);
 }
-document.querySelectorAll("#slots select").forEach(s => s.addEventListener("change", refresh));
-$("phone").addEventListener("input", e => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
+
+function render() { renderGrid(); renderCart(); }
+
+document.addEventListener("click", (e) => {
+  const inc = e.target.closest("[data-inc]");
+  const dec = e.target.closest("[data-dec]");
+  if (inc) { const id = inc.dataset.inc; cart[id] = (cart[id] || 0) + 1; render(); }
+  else if (dec) { const id = dec.dataset.dec; cart[id] = Math.max((cart[id] || 0) - 1, 0); if (!cart[id]) delete cart[id]; render(); }
+});
+
+// Hide the bottom bar while the checkout box is already on screen
+let cartInView = false;
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(([entry]) => { cartInView = entry.isIntersecting; renderCart(); }, { threshold: 0.15 }).observe($("cart"));
+}
+
+$("b-go").addEventListener("click", () => {
+  $("cart").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+$("phone").addEventListener("input", e => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); $("f-phone").classList.remove("invalid"); });
 $("name").addEventListener("input", () => $("f-name").classList.remove("invalid"));
-$("phone").addEventListener("input", () => $("f-phone").classList.remove("invalid"));
 
 // Send data to the Google Sheet (silently; never blocks the order)
 function sendToSheet(data) {
   if (!SETTINGS.sheetUrl) return Promise.resolve();
-  const body = new URLSearchParams(data);
-  return fetch(SETTINGS.sheetUrl, { method: "POST", mode: "no-cors", body, keepalive: true }).catch(() => {});
+  return fetch(SETTINGS.sheetUrl, { method: "POST", mode: "no-cors", body: new URLSearchParams(data), keepalive: true }).catch(() => {});
 }
 
 // Count QR scans (once per visit)
@@ -281,22 +350,21 @@ $("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = $("name").value.trim();
   const phone = $("phone").value.trim();
-  const items = chosenItems();
+  const items = lines();
 
-  let ok = true;
-  $("f-name").classList.toggle("invalid", !name);
-  $("f-phone").classList.toggle("invalid", !/^[6-9]\d{9}$/.test(phone));
-  $("f-slot0").classList.toggle("invalid", items.length === 0);
-  if (!name || !/^[6-9]\d{9}$/.test(phone) || items.length === 0) {
-    const firstBad = document.querySelector(".invalid input, .invalid select");
-    if (firstBad) firstBad.focus();
+  if (!items.length) {
+    $("empty").innerHTML = "<b style='color:var(--error)'>Please add at least one product first.</b>";
+    $("grid").scrollIntoView({ behavior: "smooth" });
     return;
   }
+  const phoneOk = /^[6-9]\d{9}$/.test(phone);
+  $("f-name").classList.toggle("invalid", !name);
+  $("f-phone").classList.toggle("invalid", !phoneOk);
+  if (!name) return $("name").focus();
+  if (!phoneOk) return $("phone").focus();
 
   const t = totals(items);
   const orderId = "KK-" + Date.now().toString(36).slice(-5).toUpperCase();
-  const itemText = items.map(it => `${it.name} x ${it.qty}`).join(", ");
-
   const msg = [
     "Hi Kosha Life! I'd like to place an order.",
     "",
@@ -317,10 +385,10 @@ $("form").addEventListener("submit", async (e) => {
   $("submit").disabled = true;
   $("submit").textContent = "Placing order…";
 
-  // Save to sheet, but don't wait more than 2 seconds
   await Promise.race([
     sendToSheet({
-      type: "order", orderId, name, phone, items: itemText,
+      type: "order", orderId, name, phone,
+      items: items.map(it => `${it.name} x ${it.qty}`).join(", "),
       itemIds: items.map(it => `${it.id}:${it.qty}`).join(","),
       coupon: SETTINGS.couponCode, source
     }),
@@ -329,14 +397,14 @@ $("form").addEventListener("submit", async (e) => {
 
   $("oid").textContent = orderId;
   $("wa-link").href = waUrl;
-  $("form").style.display = "none";
-  document.querySelector(".products").style.display = "none";
+  $("shop").style.display = "none";
+  $("bar").classList.remove("show");
   $("done").style.display = "block";
   window.scrollTo(0, 0);
   location.href = waUrl;
 });
 
-refresh();
+render();
 </script>
 </body>
 </html>

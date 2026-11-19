@@ -42,4 +42,4 @@ Before printing: test the QR on a phone, scan it, and place one test order. Chec
 Prices, products, the coupon, the discount and the WhatsApp number are all in the `SETTINGS` and `PRODUCTS` sections near the bottom of `public/collab/index.html`.
 If you change prices, also change `PRICES` at the top of the Google script, then go to **Deploy → Manage deployments → Edit → New version**.
 
-To swap the Hair Mask photo, save it as `public/collab/hair-mask.jpg`. Until then, the page shows the Kosha logo in its place.
+To add the Hair Mask photo, save it as `public/collab/hair-mask.jpg` and change its `img` in `PRODUCTS` to `"/collab/hair-mask.jpg"`. Until then, the page shows the Kosha logo in its place.
